@@ -1,0 +1,15 @@
+.strikethrough{
+    text-decoration: line-through;
+}
+
+.graph{
+    width: 100%;
+}
+
+#q_t_graph{
+    height: 100px;
+}
+
+#b_t_graph{
+    height: 75px;
+}

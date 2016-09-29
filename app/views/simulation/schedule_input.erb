@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Input New Schedule</h2>
+        <form action="/simulation/add_schedule" method="post">
+            <div class="input-group name">
+                <span class="input-group-addon" id="basic-addon1">Schedule name</span>
+                <input id = "schedule_name" type="text" class="form-control" name="name" placeholder="" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group IAT">
+                <span class="input-group-addon" id="basic-addon1">Interarrival time</span>
+                <input id = "arrival_str" type="text" class="form-control" name="IAT" placeholder="divide into comma( , )" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group ST">
+                <span class="input-group-addon" id="basic-addon1">Service time</span>
+                <input id="service_str" type="text" class="form-control" name="ST" placeholder="divide into comma( , )" aria-describedby="basic-addon1">
+            </div>
+            <div class="divide_bar"></div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" id="generate" class="btn btn-warning" onclick="generate()">Generate</button>
+        </form>
+    </div>
+</div>
+
+<script src="/javascripts/schedule_input.js"></script>

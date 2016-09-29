@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Simulation term project</h1>
+    <h3>click buttons below to proceed</h3>
+    <p>
+      <!--<a class="btn btn-primary btn-lg" href="#" role="button">input new schedule</a>-->
+      <%= link_to 'input new schedule', {action:"schedule_input"}, class:"btn btn-primary btn-lg", role:"button" %>
+      <%= link_to 'show schedule list', {action:"schedule_list"}, class:"btn btn-primary btn-lg", role:"button" %>
+    </p>
+  </div>
+</div>

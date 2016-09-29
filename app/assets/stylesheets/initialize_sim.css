@@ -1,0 +1,11 @@
+.table.table-bordered.graph > #subject{
+    width:100px;
+}
+
+.arrange_R > td{
+    text-align:right;
+}
+
+.graph_cell{
+    height: 100px;
+}

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Schedule List</h2>
+        <ul class="list-group">
+        <% @all_schedule_list.each do |schedule| %>
+            <li class="list-group-item">
+                <h4 class="list-group-item-heading"><%=schedule.name%></h4>
+                <p class="list-group-item-text time">Interarrival times: <%=schedule.IAT%></p>
+                <p class="list-group-item-text time">Service times: <%=schedule.ST%></p>
+            
+                <%= link_to 'Start simulation', {:action => "initialize_sim", :id => schedule.id}, class:"btn btn-primary", role:"button" %>
+                <button type="button" class="btn btn-danger schedule_delete" data-toggle="modal" data-target="#myModal">
+                    Delete schedule
+                </button>
+                
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Certification of Deletion</h4>
+                            </div>
+                            <div class="modal-body">
+                                You cannot revert after deletion.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                                <%= link_to 'Delete schedule', {:action => "del_schedule", :id => schedule.id}, class:"btn btn-danger schedule_delete", role:"button" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        <% end %>
+        </ul>
+    </div>
+</div>

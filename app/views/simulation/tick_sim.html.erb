@@ -1,0 +1,100 @@
+<div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>System</th>
+          <th>Clock</th>
+          <th>B(t)</th>
+          <th>Q(t)</th>
+          <th>Arrival times of <br/>custs. in queue</th>
+          <th>Event calender</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="arrange_R">
+          <td><% @state.get_queue.reverse_each do |part|%>(<%= part.get_part_num%>)<% end %> [<% if @state.get_machine != 0 %><%= @state.get_machine.get_part_num %><%else%>&nbsp;&nbsp;&nbsp;<%end%>]</td>
+          <td><%= @state.get_clock %></td>
+          <td><% if @state.get_machine==0%>0<%else%>1<%end%></td>
+          <td><%= @state.get_queue.length%></td>
+          <td>(<% @state.get_queue.reverse_each do |part|%><%= part.get_arrival_time%>, <%end%>)</td>
+          <td><% @state.get_event_calender.each do |event|%><%= event%><br/><%end%></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Number of<br/>completed waiting<br/>times in queue</th>
+          <th>Total of<br/>waiting times in queue</th>
+          <th>Area under<br/>Q(t)</th>
+          <th>Area under<br/>B(t)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @state.get_NofCWTinQ%></td>
+          <td><%= @state.get_TofWTinQ.round(2)%></td>
+          <td><%= @state.get_Area_und_q_t.round(2)%></td>
+          <td><%= @state.get_Area_und_b_t.round(2)%></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="table table-bordered graph">
+      <thead>
+        <tr>
+          <th width="20%">subject</th>
+          <th width="80%">graph</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q(t) graph</td>
+          <td class="graph_cell">
+            <div id="q_t_graph_data" data="<%= @state.get_q_t_data_list%>"></div>
+            <canvas class="graph" id="q_t_graph"></canvas>
+          </td>
+        </tr>
+        <tr>
+          <td>B(t) graph</td>
+          <td class="graph_cell">
+            <div id="b_t_graph_data" data="<%= @state.get_b_t_data_list%>"></div>
+            <canvas class="graph" id="b_t_graph"></canvas>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="table table-bordered graph">
+      <thead>
+        <tr>
+          <th width="20%">subject</th>
+          <th width="80%">time schedule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Interarrival times</td>
+          <td><span class="strikethrough"><% @state.get_IAT_arr_bar.each do |iat_bar|%><%= iat_bar%>, <%end%></span> <% @state.get_IAT_arr.each do |iat|%><%= iat%>, <%end%></td>
+        </tr>
+        <tr>
+          <td>Service times</td>
+          <td><span class="strikethrough"><% @state.get_ST_arr_bar.each do |st_bar|%><%= st_bar%>, <%end%></span> <% @state.get_ST_arr.each do |st|%><%= st%>, <%end%></td>
+        </tr>
+      </tbody>
+    </table>
+    <% if @state.get_terminate == false%>
+    <form action="tick_sim" method="post">
+      <input type="hidden" name=""/>
+      <input type="submit" value="Proceed" class="btn btn-primary btn-lg"/>
+    </form>
+    <% else %>
+    <form action="result_show" method="post">
+      <input type="hidden" name=""/>
+      <input type="submit" value="Show results" class="btn btn-danger btn-lg"/>
+    </form>
+    <% end %>
+</div>
+
+<script src="/javascripts/tick_sim.js"></script>
